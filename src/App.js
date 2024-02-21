@@ -10,6 +10,7 @@ import Register from './Register';
 import { auth } from './firebase'; //walau gakepake, tapi ini sekedar untuk jalanin firebse
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useStateValue } from './StateProvider';
+import Payment from './Payment';
 
 export default function App() {
   const [{}, dispatch] = useStateValue()
@@ -41,10 +42,11 @@ export default function App() {
     <Router>
       <div className='app'>
         <Routes>
-          <Route path="/login" element={[<Login />]}/>
-          <Route path='/register' element={[<Register />]}></Route>
+          <Route path="/login" element={<Login />}/>
+          <Route path='/register' element={<Register />} />
           <Route path="/checkout" element={[<Header />, <Checkout />]} />
           <Route path="/" element={[<Header />, <Home />]}/>
+          <Route path='/payment' element={[<Header />, <Payment />]} />
         </Routes>
       </div>
     </Router>

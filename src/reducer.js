@@ -4,8 +4,9 @@ export const initialState = {
 }
 
 // selector
-export const getBasketTotal = (basket) => 
-    basket?.reduce((total, currItem) => currItem.price + total, 0);
+export function getBasketTotal(basket) {
+  return basket?.reduce((total, currItem) => currItem.price + total, 0);
+}
                 // amount = total item
                 // item = current item
 

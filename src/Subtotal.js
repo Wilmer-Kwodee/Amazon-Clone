@@ -3,6 +3,7 @@ import './Subtotal.css'
 import CurrencyFormat from 'react-currency-format'
 import { useStateValue } from './StateProvider'; // GILA GILA WILMER YG MIKIR SENDIRI NIH NICEEE
 import { getBasketTotal } from './reducer';
+import { Link } from 'react-router-dom';
 
 function Subtotal() {
     const [{ basket }, dispatch] = useStateValue(); // GILA GILA WILMER YG MIKIR SENDIRI NIH NICEEE
@@ -28,7 +29,11 @@ function Subtotal() {
             prefix={"$"}
         />
 
-        <button>Proceed to checkout</button>
+        <button>
+            <Link to='/payment'>
+                Proceed to checkout
+            </Link>
+        </button>
     </div>
   )
 }

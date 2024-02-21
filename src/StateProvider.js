@@ -1,3 +1,6 @@
+/* -> "skip ahead this one, dont need to understand everything
+    trust me it's all about pattern recognition"
+*/
 import React, { createContext, useContext, useReducer } from "react";
 
 // Prepares the dataLayer

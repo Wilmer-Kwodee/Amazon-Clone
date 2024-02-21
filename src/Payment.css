@@ -1,0 +1,29 @@
+.payment{
+    background-color: white;
+}
+
+.address{
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid silver;
+}
+.credentials{
+    padding-left: 4rem;
+}
+
+.title{
+    text-align: center;
+    background-color: rgb(235, 235, 235);
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+}
+
+.review_item{
+    display: flex;
+    /* justify-content: space-between; */
+    padding: 1rem;
+    border-bottom: 1px solid silver;
+}
+.items{
+    padding-left: 3rem;
+}
