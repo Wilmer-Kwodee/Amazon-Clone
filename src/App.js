@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./App.css"
 import Header from './Header'
 import Home from './Home'
@@ -7,7 +7,35 @@ import Checkout from './Checkout';
 import Login from './Login';
 import Register from './Register';
 
+import { auth } from './firebase'; //walau gakepake, tapi ini sekedar untuk jalanin firebse
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useStateValue } from './StateProvider';
+
 export default function App() {
+  const [{}, dispatch] = useStateValue()
+
+  useEffect(() => {
+    const Auth = getAuth();
+    onAuthStateChanged(Auth, (authUser) => {
+      console.log('the user is =>', authUser)
+
+      if(authUser){
+        // user logged in
+        dispatch({
+          type: 'SET_USER', 
+          user: authUser
+        })
+      }
+      else{
+        // user logged out
+        dispatch({
+          type: 'SET_USER', 
+          user: null
+        })
+      }
+    })
+  }, [])
+
   return (
     // BEM
     <Router>

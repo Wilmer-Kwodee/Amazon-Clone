@@ -5,7 +5,7 @@ import { useStateValue } from './StateProvider';
 import CheckoutProduct from './CheckoutProduct';
 
 function Checkout() {
-  const [{ basket }, dispatch] = useStateValue(); // GILA GILA WILMER YG MIKIR SENDIRI NIH NICEEE
+  const [{ basket, user }, dispatch] = useStateValue(); // GILA GILA WILMER YG MIKIR SENDIRI NIH NICEEE
 
   return (
     <div className='checkout'>
@@ -13,6 +13,7 @@ function Checkout() {
             <img className='checkout__ad' src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg" />
             
             <div>
+                <h3 className='checkout__title'>Hello, {user ? [user.email] : 'Guest'}</h3>
                 <h2 className='checkout__title'>Your shopping basket</h2>
                 
                 <div>

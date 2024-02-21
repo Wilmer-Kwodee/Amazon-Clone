@@ -6,8 +6,28 @@ import { Link } from 'react-router-dom';
 
 import { useStateValue } from './StateProvider'; // GILA GILA WILMER YG MIKIR SENDIRI NIH NICEEE
 
+//logout logic
+import { getAuth, signOut } from 'firebase/auth';
+
 function Header() {
-  const [{ basket }, dispatch] = useStateValue(); // GILA GILA WILMER YG MIKIR SENDIRI NIH NICEEE
+  const [{ basket, user }, dispatch] = useStateValue(); // GILA GILA WILMER YG MIKIR SENDIRI NIH NICEEE
+  
+  const logInOrOut = () => {
+    if(user){
+      dispatch({
+        type: 'SET_USER',
+        user: null,
+      })
+      // logout
+      const auth = getAuth()
+      signOut(auth).then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+        alert(error)
+      });
+    }
+  }
 
   return (
     <div className='header'>
@@ -21,13 +41,13 @@ function Header() {
         </div>
 
         <div className='header__nav'>
-          <Link to="/login">
-              <div className='header__option'>
+          <Link to={user? "" : "/login"}>
+              <div onClick={logInOrOut} className='header__option'>
                 <span className='header__optionLineOne'>
-                  Hello Guest
+                  Hello, {user ? [user.email] : 'Guest'}
                 </span>
                 <span className='header__optionLineTwo' >
-                  Sign In
+                  {user ? 'Sign Out' : 'Sign In'}
                 </span>
               </div>
             </Link>
