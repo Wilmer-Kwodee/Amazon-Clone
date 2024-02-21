@@ -1,26 +1,41 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Login.css'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from './firebase'; //walau gakepake, tapi ini sekedar untuk jalanin firebse
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 function loginSubmit(){
     
 }
 
 function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const signIn = e => {
         e.preventDefault()
 
-        //some fancy firebase shieetttt 💀
+        const Auth = getAuth();
+        signInWithEmailAndPassword(Auth, email, password)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            navigate('/');
+            alert("sign in success")
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage)
+          });
     }
     const register = e => {
         e.preventDefault()
 
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
+        const Auth = getAuth();
+        createUserWithEmailAndPassword(Auth, email, password)
           .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
