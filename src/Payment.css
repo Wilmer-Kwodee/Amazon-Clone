@@ -28,3 +28,8 @@
 .items{
     padding-left: 3rem;
 }
+
+.credentials button {
+    background: #f0c14b;
+    width: 100%;
+}

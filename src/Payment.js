@@ -24,15 +24,24 @@ function Payment() {
 
     useEffect(() => {
         const getClientSecret = async () => {
-            // const response = await axios({
-            //     method: 'post',
-            //     url: `/payments/create?total=${getBasketTotal(basket) * 100}`
-            // });
-            // setClientSecret(response.data.clientSecret)
+            if(basket.length === 0){
+                alert('stripe Cannot create payment with empty cart...');
+                navigate("/");
+                return;
+            }
+
+            const response = await axios({
+                method: 'post',
+
+                url: `http://127.0.0.1:5001/challenge-91ace/us-central1/api/payments/create?total=${getBasketTotal(basket) * 100}`
+            });
+            setClientSecret(response.data.clientSecret)
         }
 
         getClientSecret();
     }, [basket])
+
+    console.log('THE SECRET IS >>>', clientSecret)
 
     const handleSubmit = async (event) => {
         // some fancy stripe
