@@ -1,5 +1,18 @@
 test@email.com
 123456
+---------------
+
+List of Features / Skills:
+- React JS
+- Firebase
+- typescript
+- Axios
+- Stripe JS
+- React Currency
+- Express
+- Cors
+
+---------------
 
 feynmann:
 "what did you learn last saturday wilmer?"
